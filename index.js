@@ -1,6 +1,8 @@
 const {hash} = window.location;
 
-const message = atob(hash.replace('#', ''));
+const message = decodeURIComponent(
+  atob(hash.replace('#', ''))
+);
 
 if (message) {
   document
@@ -32,7 +34,9 @@ document
     const input = document.querySelector(
       '#message-input'
     );
-    const encrypted = btoa(input.value);
+    const encrypted = btoa(
+      encodeURIComponent(input.value)
+    );
     const linkInput = document.querySelector(
       '#link-input'
     );
